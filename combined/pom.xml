@@ -51,88 +51,6 @@
 
     <profiles>
         <profile>
-            <id>mac</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-macosx-x86_64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>linux-aarch64</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>aarch64</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-linux-aarch64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>linux-ppc64le</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>ppc64le</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-linux-ppc64le</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>linux-s390x</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>s390x</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-linux-s390x</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>linux-i386</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                </os>
-                <property>
-                    <name>sun.arch.data.model</name>
-                    <value>32</value>
-                </property>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-linux-i386</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>linux-x86_64</id>
             <activation>
                 <os>
@@ -153,25 +71,6 @@
             </dependencies>
         </profile>
         <profile>
-            <id>windows-x86</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-                <property>
-                    <name>sun.arch.data.model</name>
-                    <value>32</value>
-                </property>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-windows-i386</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>windows-x64</id>
             <activation>
                 <os>
@@ -186,38 +85,6 @@
                 <dependency>
                     <groupId>com.ceph</groupId>
                     <artifactId>rados-jni-windows-x86_64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>solaris-x64</id>
-            <activation>
-                <os>
-                    <name>sunos</name>
-                    <arch>amd64</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-solaris-x86_64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>solaris-sparcv9</id>
-            <activation>
-                <os>
-                    <name>sunos</name>
-                    <arch>amd64</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-solaris-sparcv9</artifactId>
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>
@@ -248,27 +115,7 @@
                 </dependency>
                 <dependency>
                     <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-windows-i386</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.ceph</groupId>
                     <artifactId>rados-jni-linux-x86_64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-linux-i386</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-macosx-x86_64</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.ceph</groupId>
-                    <artifactId>rados-jni-solaris-x86_64</artifactId>
                     <version>${project.version}</version>
                 </dependency>
             </dependencies>

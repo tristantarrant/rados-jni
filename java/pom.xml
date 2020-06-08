@@ -10,16 +10,11 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.ceph</groupId>
     <artifactId>rados-jni-java</artifactId>
 
     <packaging>jar</packaging>
     <name>RADOS JNI bindings</name>
     <description>Java API for the RADOS C library</description>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <build>
         <plugins>
@@ -28,7 +23,7 @@
                 <configuration>
                     <compilerArgs>
                         <arg>-h</arg>
-                        <arg>../native/include</arg>
+                        <arg>${project.parent.basedir}/native/include</arg>
                     </compilerArgs>
                     <release>8</release>
                 </configuration>

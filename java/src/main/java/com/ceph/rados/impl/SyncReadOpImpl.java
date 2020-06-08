@@ -1,12 +1,12 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.CmpXattrOp;
-import com.ceph.rados.OperationFlag;
-import com.ceph.rados.SyncReadOp;
+import static com.ceph.rados.OperationFlag.combine;
 
 import java.nio.ByteBuffer;
 
-import static com.ceph.rados.OperationFlag.combine;
+import com.ceph.rados.CmpXattrOp;
+import com.ceph.rados.OperationFlag;
+import com.ceph.rados.SyncReadOp;
 
 public class SyncReadOpImpl implements SyncReadOp {
 

@@ -1,16 +1,17 @@
 package com.ceph.rados;
 
-import com.ceph.rados.impl.Native;
-import com.ceph.rados.impl.RadosImpl;
-
 import java.net.URI;
 import java.util.List;
 import java.util.Properties;
+
+import com.ceph.rados.impl.Native;
+import com.ceph.rados.impl.RadosImpl;
 
 public interface Rados extends AutoCloseable {
 
     /**
      * Creates an instance of the RADOS client from the supplied Ceph configuration file
+     *
      * @param uri the URI to the configuration file
      * @return an instance of the RADOS client
      */
@@ -20,6 +21,7 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Creates an instance of the RADOS client from the supplied properties
+     *
      * @param properties
      * @return an instance of the RADOS client
      */
@@ -29,6 +31,7 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Returns the version of the underlying native RADOS library
+     *
      * @return a {@link Version} instance
      */
     static Version version() {
@@ -38,6 +41,7 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Loads a Ceph configuration file
+     *
      * @param uri
      * @return
      */
@@ -45,7 +49,8 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Sets a configuration property
-     * @param name the name of the property
+     *
+     * @param name  the name of the property
      * @param value the value of the property
      * @return
      */
@@ -53,20 +58,23 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Returns whether
+     *
      * @return
      */
     boolean isConnected();
 
     /**
-     * Connects to the Ceph cluster. After this method is invoked, {@link #isConnected()} will return true until the {@link #close()} method has been called.
-     * {@link #close()} <b>must</b> be invoked to free all associated resources.
+     * Connects to the Ceph cluster. After this method is invoked, {@link #isConnected()} will return true until the
+     * {@link #close()} method has been called. {@link #close()} <b>must</b> be invoked to free all associated
+     * resources.
      */
     Rados connect();
 
     /**
      * Create an io context
-     *
+     * <p>
      * The io context allows you to perform operations within a particular pool.
+     *
      * @param poolName the name of the pool.
      * @return an {@link IOCtx} instance. The instance must be {@link #close()}d when finished.
      */
@@ -76,12 +84,14 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Gets a list of pool names
+     *
      * @return a {@link List} of pool names
      */
     List<String> poolNames();
 
     /**
      * Get the id of a pool
+     *
      * @param poolName
      * @return
      */
@@ -89,6 +99,7 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Get the name of a pool
+     *
      * @param poolId
      * @return the id of the pool
      */
@@ -96,12 +107,14 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Create a pool with default settings
+     *
      * @param poolName
      */
     void poolCreate(String poolName);
 
     /**
      * Create a pool with default settings
+     *
      * @param poolName
      * @param crushRule
      */
@@ -109,14 +122,16 @@ public interface Rados extends AutoCloseable {
 
     /**
      * Delete a pool and all data inside it
-     *
+     * <p>
      * The pool is removed from the cluster immediately, but the actual data is deleted in the background.
+     *
      * @param poolName
      */
     void poolDelete(String poolName);
 
     /**
      * Get the fsid of the cluster as a hexadecimal string.
+     *
      * @return the fsid
      */
     String fsid();

@@ -1,9 +1,9 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.Xattr;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import com.ceph.rados.Xattr;
 
 public class XattrIterator implements Iterator<Xattr>, AutoCloseable {
     final long address;
@@ -33,7 +33,7 @@ public class XattrIterator implements Iterator<Xattr>, AutoCloseable {
     }
 
     private void peek() {
-        if (next == null) { // Only read the next item if we don't have one already
+        if (!eof && next == null) { // Only read the next item if we don't have one already
             next = Native.INSTANCE.getxattrs_next(address);
             if (next == null) {
                 close();
@@ -42,8 +42,10 @@ public class XattrIterator implements Iterator<Xattr>, AutoCloseable {
     }
 
     @Override
-    public void close() {
-        Native.INSTANCE.getxattrs_end(address);
+    public synchronized void close() {
+        if (!eof) {
+            Native.INSTANCE.getxattrs_end(address);
+        }
         eof = true;
     }
 }

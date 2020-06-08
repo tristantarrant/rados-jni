@@ -1,11 +1,11 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.ASyncWriteOp;
-import com.ceph.rados.RadosAsync;
-
 import java.nio.ByteBuffer;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+
+import com.ceph.rados.ASyncWriteOp;
+import com.ceph.rados.RadosAsync;
 
 public class RadosAsyncImpl implements RadosAsync {
     private final IOCtxImpl ioCtx;
@@ -45,6 +45,21 @@ public class RadosAsyncImpl implements RadosAsync {
 
     @Override
     public CompletionStage<Void> flush() {
+        return null;
+    }
+
+    @Override
+    public CompletionStage<Void> setXattr(String oid, String name, ByteBuffer buf) {
+        return null;
+    }
+
+    @Override
+    public CompletionStage<Void> getXattr(String oid, String name, ByteBuffer buf) {
+        return null;
+    }
+
+    @Override
+    public CompletionStage<Void> rmXattr(String oid, String name) {
         return null;
     }
 

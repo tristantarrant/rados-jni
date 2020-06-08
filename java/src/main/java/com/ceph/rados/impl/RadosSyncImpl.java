@@ -1,10 +1,15 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.*;
-
 import java.nio.ByteBuffer;
 import java.util.Iterator;
 import java.util.List;
+
+import com.ceph.rados.Lock;
+import com.ceph.rados.Locker;
+import com.ceph.rados.RadosSync;
+import com.ceph.rados.SyncReadOp;
+import com.ceph.rados.SyncWriteOp;
+import com.ceph.rados.Xattr;
 
 public class RadosSyncImpl implements RadosSync {
     private final IOCtxImpl ioCtx;
@@ -14,20 +19,21 @@ public class RadosSyncImpl implements RadosSync {
     }
 
     @Override
-    public void write(String oid, ByteBuffer buf, long offset) {
+    public void write(String oid, ByteBuffer buf, int offset) {
         assert buf.isDirect();
+        Native.INSTANCE.write(ioCtx.address, oid, buf, 0, offset, buf.limit());
     }
 
     @Override
     public void write(String oid, ByteBuffer buf) {
         assert buf.isDirect();
-        Native.INSTANCE.write(ioCtx.address, oid, buf, buf.position(), 0, buf.limit() - buf.position());
+        Native.INSTANCE.write(ioCtx.address, oid, buf, 0, 0, buf.limit());
     }
 
     @Override
     public void append(String oid, ByteBuffer buf) {
         assert buf.isDirect();
-        Native.INSTANCE.append(ioCtx.address, oid, buf, buf.position(), 0, buf.limit() - buf.position());
+        Native.INSTANCE.append(ioCtx.address, oid, buf, 0, buf.limit());
     }
 
     @Override
@@ -63,7 +69,7 @@ public class RadosSyncImpl implements RadosSync {
     @Override
     public void setXattr(String oid, String name, ByteBuffer buf) {
         assert buf.isDirect();
-        Native.INSTANCE.setxattr(ioCtx.address, oid, name, buf, buf.position(), buf.limit() - buf.position());
+        Native.INSTANCE.setxattr(ioCtx.address, oid, name, buf, 0, buf.limit());
     }
 
     @Override

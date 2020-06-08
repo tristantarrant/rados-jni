@@ -1,11 +1,11 @@
 package com.ceph.rados.impl;
 
+import java.nio.ByteBuffer;
+import java.util.concurrent.CompletableFuture;
+
 import com.ceph.rados.PoolStat;
 import com.ceph.rados.Version;
 import com.ceph.rados.Xattr;
-
-import java.nio.ByteBuffer;
-import java.util.concurrent.CompletableFuture;
 
 public class Native {
     public static final Native INSTANCE;
@@ -15,7 +15,8 @@ public class Native {
         INSTANCE = new Native();
     }
 
-    private Native() {}
+    private Native() {
+    }
 
     // Global calls
     public native Version version();
@@ -62,7 +63,7 @@ public class Native {
 
     public native int read(long ioctx_address, String oid, ByteBuffer buf, int buf_offset, int offset, int length);
 
-    public native void append(long ioctx_address, String oid, ByteBuffer buf, int buf_offset, int offset, int length);
+    public native void append(long ioctx_address, String oid, ByteBuffer buf, int buf_offset, int length);
 
     public native void remove(long ioctx_address, String oid);
 

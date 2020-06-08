@@ -1,5 +1,7 @@
 package com.ceph.rados;
 
+import static com.ceph.rados.Util.asDirectByteBuffer;
+
 import java.nio.ByteBuffer;
 import java.time.Instant;
 import java.util.EnumSet;
@@ -26,9 +28,21 @@ public interface WriteOp<T extends WriteOp> extends AutoCloseable {
 
     T cmpExt(ByteBuffer buf);
 
+    default T cmpExt(String s) {
+        return cmpExt(asDirectByteBuffer(s));
+    }
+
     T cmpXattr(String name, CmpXattrOp op, ByteBuffer buf);
 
+    default T cmpXattr(String name, CmpXattrOp op, String value) {
+        return cmpXattr(name, op, asDirectByteBuffer(value));
+    }
+
     T setXattr(String name, ByteBuffer buf);
+
+    default T setXattr(String name, String s) {
+        return setXattr(name, asDirectByteBuffer(s));
+    }
 
     T rmXattr(String name);
 
@@ -36,7 +50,15 @@ public interface WriteOp<T extends WriteOp> extends AutoCloseable {
 
     T write(ByteBuffer buf);
 
+    default T write(String s) {
+        return write(asDirectByteBuffer(s));
+    }
+
     T append(ByteBuffer buf);
+
+    default T append(String s) {
+        return append(asDirectByteBuffer(s));
+    }
 
     T remove();
 

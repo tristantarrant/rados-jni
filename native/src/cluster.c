@@ -42,6 +42,13 @@ JNIEXPORT void JNICALL Java_com_ceph_rados_impl_Native_shutdown(JNIEnv *env, job
     rados_shutdown((rados_t)address);
 }
 
+JNIEXPORT jstring JNICALL Java_com_ceph_rados_impl_Native_fsid(JNIEnv *env, jobject instance, jlong address)
+{
+   char fsid[38];
+   rados_cluster_fsid((rados_t)address, fsid, 37);
+   return (*env)->NewStringUTF(env, fsid);
+}
+
 JNIEXPORT void JNICALL Java_com_ceph_rados_impl_Native_conf_1read_1file(JNIEnv *env, jobject instance, jlong address, jstring path)
 {
     int res;

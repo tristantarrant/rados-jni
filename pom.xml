@@ -32,10 +32,6 @@
     </developers>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>11</maven.compiler.target>
-        <cmake.generator>Unix Makefiles</cmake.generator>
-        <make.exe>make</make.exe>
         <!-- Versions -->
         <version.junit>5.6.2</version.junit>
         <version.mockito>3.3.3</version.mockito>
@@ -49,6 +45,13 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.16.1</version>
                 <scope>test</scope>
             </dependency>
 
@@ -79,12 +82,8 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.0.0-M1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.2.3</version>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -92,6 +91,30 @@
                     <configuration>
                         <release>8</release>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.2.3</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M4</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -145,69 +168,6 @@
             </build>
         </profile>
         <profile>
-            <id>mac</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                </os>
-            </activation>
-            <modules>
-                <module>macosx-x86_64</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>linux-aarch64</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>aarch64</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>linux-aarch64</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>linux-ppc64le</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>ppc64le</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>linux-ppc64le</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>linux-s390x</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>s390x</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>linux-s390x</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>linux-i386</id>
-            <activation>
-                <os>
-                    <family>linux</family>
-                    <arch>i386</arch>
-                </os>
-                <property>
-                    <name>sun.arch.data.model</name>
-                    <value>32</value>
-                </property>
-            </activation>
-            <modules>
-                <module>linux-i386</module>
-            </modules>
-        </profile>
-        <profile>
             <id>linux-x86_64</id>
             <activation>
                 <os>
@@ -224,30 +184,6 @@
             </modules>
         </profile>
         <profile>
-            <id>solaris-x64</id>
-            <activation>
-                <os>
-                    <name>sunos</name>
-                    <arch>amd64</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>solaris-x86_64</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>solaris-sparcv9</id>
-            <activation>
-                <os>
-                    <name>sunos</name>
-                    <arch>sparcv9</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>solaris-sparcv9</module>
-            </modules>
-        </profile>
-        <profile>
             <id>windows-x64</id>
             <activation>
                 <os>
@@ -260,54 +196,6 @@
             </activation>
             <modules>
                 <module>windows-x86_64</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>windows-x86</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-                <property>
-                    <name>sun.arch.data.model</name>
-                    <value>32</value>
-                </property>
-            </activation>
-            <properties>
-                <openssl.path>C:\OpenSSL-Win32\bin</openssl.path>
-            </properties>
-            <modules>
-                <module>windows-i386</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>custom-x86_64</id>
-            <activation>
-                <property>
-                    <name>jboss.modules.os-name</name>
-                </property>
-                <os>
-                    <family>linux</family>
-                    <arch>amd64</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>${jboss.modules.os-name}-x86_64</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>custom-i386</id>
-            <activation>
-                <property>
-                    <name>jboss.modules.os-name</name>
-                </property>
-                <os>
-                    <family>linux</family>
-                    <arch>i386</arch>
-                </os>
-            </activation>
-            <modules>
-                <module>${jboss.modules.os-name}-i386</module>
             </modules>
         </profile>
     </profiles>

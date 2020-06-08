@@ -1,13 +1,13 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.IOCtx;
-import com.ceph.rados.Rados;
-
 import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import com.ceph.rados.IOCtx;
+import com.ceph.rados.Rados;
 
 public class RadosImpl implements Rados {
     final long address;
@@ -115,5 +115,13 @@ public class RadosImpl implements Rados {
     @Override
     public String fsid() {
         return Native.INSTANCE.fsid(address);
+    }
+
+    @Override
+    public String toString() {
+        return "RadosImpl{" +
+                "address=" + address +
+                ", connected=" + connected +
+                '}';
     }
 }

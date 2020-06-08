@@ -1,13 +1,13 @@
 package com.ceph.rados.impl;
 
-import com.ceph.rados.CmpXattrOp;
-import com.ceph.rados.OperationFlag;
-import com.ceph.rados.SyncWriteOp;
-
 import java.nio.ByteBuffer;
 import java.time.Instant;
 import java.util.Map;
 import java.util.Set;
+
+import com.ceph.rados.CmpXattrOp;
+import com.ceph.rados.OperationFlag;
+import com.ceph.rados.SyncWriteOp;
 
 public class SyncWriteOpImpl implements SyncWriteOp {
     final IOCtxImpl ioCtx;

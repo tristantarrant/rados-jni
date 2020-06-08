@@ -178,10 +178,10 @@ JNIEXPORT jint JNICALL Java_com_ceph_rados_impl_Native_read
 /*
  * Class:     com_ceph_rados_impl_Native
  * Method:    append
- * Signature: (JLjava/lang/String;Ljava/nio/ByteBuffer;III)V
+ * Signature: (JLjava/lang/String;Ljava/nio/ByteBuffer;II)V
  */
 JNIEXPORT void JNICALL Java_com_ceph_rados_impl_Native_append
-  (JNIEnv *, jobject, jlong, jstring, jobject, jint, jint, jint);
+  (JNIEnv *, jobject, jlong, jstring, jobject, jint, jint);
 
 /*
  * Class:     com_ceph_rados_impl_Native
